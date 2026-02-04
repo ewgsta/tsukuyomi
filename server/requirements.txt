@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+python-dotenv
+mutagen
+sqlalchemy
+aiofiles
+rapidfuzz
+Pillow
+pydantic-settings
+watchdog
+requests

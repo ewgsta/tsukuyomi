@@ -1,0 +1,31 @@
+{
+    "expo": {
+        "name": "Tsukuyomi",
+        "slug": "tsukuyomi",
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./public/android-chrome-192x192.png",
+        "userInterfaceStyle": "dark",
+        "splash": {
+            "image": "./public/android-chrome-512x512.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#000000"
+        },
+        "assetBundlePatterns": [
+            "**/*"
+        ],
+        "ios": {
+            "supportsTablet": true
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./public/android-chrome-192x192.png",
+                "backgroundColor": "#000000"
+            },
+            "package": "com.ewgsta.tsukuyomi"
+        },
+        "web": {
+            "favicon": "./public/favicon.ico"
+        }
+    }
+}
