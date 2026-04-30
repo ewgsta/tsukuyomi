@@ -6,144 +6,144 @@
 ![FastAPI](https://img.shields.io/badge/backend-FastAPI-009688.svg)
 ![Expo](https://img.shields.io/badge/mobile-Expo%20(React%20Native)-black.svg)
 
-**Tsukuyomi**, yerel müzik arşivinizi estetik ve güçlü bir arayüzle yönetmenizi sağlayan; Web, Masaüstü ve Mobil (Android/iOS) platformlarında çalışan yeni nesil bir müzik çalardır. 
+**Tsukuyomi**, a next-generation music player that allows you to manage your local music archive with an aesthetic and powerful interface; working on Web, Desktop, and Mobile (Android/iOS) platforms.
 
 ---
 
-##  Özellikler
+##  Features
 
-### Arayüz & Deneyim
-*   **Modern Tasarım:** Buzlu cam efektleri, canlı renkler ve akıcı animasyonlar.
-*   **Duyarlı (Responsive) Yapı:** Masaüstü ve mobil cihazlarda kusursuz görünüm.
-*   **Mini & Tam Ekran Oynatıcı:** Şarkı kontrolünü her an elinizin altında tutun.
+### Interface & Experience
+*   **Modern Design:** Frosted glass effects, vibrant colors, and smooth animations.
+*   **Responsive Layout:** Seamless appearance on desktop and mobile devices.
+*   **Mini & Full-Screen Player:** Keep song controls at your fingertips at all times.
 
-### Müzik Yönetimi
-*   **Otomatik Tarama & İzleme:** Belirlediğiniz klasörlerdeki değişikleri anlık algılar (Watchdog entegrasyonu).
-*   **Akıllı Meta Veri Okuma:** ID3 tagları, kapak resimleri ve FLAC/MP3 desteği.
-*   **Gelişmiş Arama:** Sanatçı, albüm veya şarkı ismine göre anlık filtreleme.
-*   **Favoriler & Çalma Listeleri:** Kendi listelerinizi oluşturun, favorilerinizi yönetin.
+### Music Management
+*   **Automatic Scanning & Monitoring:** Instantly detects changes in your designated folders (Watchdog integration).
+*   **Smart Metadata Reading:** ID3 tags, album covers, and FLAC/MP3 support.
+*   **Advanced Search:** Real-time filtering by artist, album, or song name.
+*   **Favorites & Playlists:** Create your own lists and manage your favorites.
 
-### Mobil (Expo) (Eh işte, biraz biraz yapıyorum şuan kullanılabilecek gibi değil.)
-*   **Native Performans:** React Native ile geliştirilmiş akıcı mobil deneyim.
-*   **Senkronizasyon:** Aynı ağ üzerindeki sunucuya bağlanarak kütüphanenize heryerden erişim.
-*   **Arka Planda Çalma:** Uygulama kapalıyken bile müzik keyfi (iOS/Android).
+### Mobile (Expo) (Well, working on it little by little, doesn't seem usable yet.)
+*   **Native Performance:** Smooth mobile experience developed with React Native.
+*   **Synchronization:** Connect to the server on the same network for access to your library from anywhere.
+*   **Background Playback:** Enjoy music even when the app is closed (iOS/Android).
 
-### Teknik Özellikler
-*   **Streaming:** Büyük dosyaları bile beklemeden oynatabilen range-request destekli streaming.
-*   **Canlı Şarkı Sözleri:** `lrclib.net` entegrasyonu ile senkronize veya düz şarkı sözleri.
-*   **Hot-Reload Database:** SQLite tabanlı hızlı veri yönetimi.
+### Technical Features
+*   **Streaming:** Range-request-supported streaming that plays even large files without waiting.
+*   **Live Song Lyrics:** Synchronized or plain lyrics with `lrclib.net` integration.
+*   **Hot-Reload Database:** Fast data management based on SQLite.
 
 ---
 
-## Kurulum ve Çalıştırma
+## Installation and Setup
 
-Proje Sunucu (Server) ve İstemci (Client) olmak üzere iki ana parçadan oluşur.
+The project consists of two main parts: Server and Client.
 
-### Gereksinimler
+### Requirements
 *   Python 3.9+
-*   Node.js 18+ & Bun (veya npm/yarn)
+*   Node.js 18+ & Bun (or npm/yarn)
 
-### 1. Sunucu (Backend) Kurulumu
-Sunucu, müzik dosyalarını tarar ve API sağlar.
+### 1. Server (Backend) Setup
+The server scans music files and provides the API.
 
 ```bash
 cd server
 
-# Sanal ortam oluşturma (Önerilir)
+# Create virtual environment (Recommended)
 python -m venv venv
-# Windows için:
+# For Windows:
 .\venv\Scripts\activate
 
-# Bağımlılıkları yükle
+# Install dependencies
 pip install -r requirements.txt
 
-# Sunucuyu başlat (Varsayılan port: 8000)
+# Start the server (Default port: 8000)
 python main.py
 ```
 
-### 2. İstemci (Web/Desktop) Kurulumu
-Modern web / tauri arayüzü.
+### 2. Client (Web/Desktop) Setup
+Modern web / tauri interface.
 
 ```bash
 cd client
 
-# Bağımlılıkları yükle
+# Install dependencies
 bun install
 
-# Geliştirme modunda başlat (Web)
+# Start in development mode (Web)
 bun run dev
 
-# Masaüstü Uygulaması (Tauri) olarak başlat
+# Start as a Desktop Application (Tauri)
 bun run tauri dev
 ```
 
-### 3. Mobil (Expo) Uygulama
-Mobil cihazınızda çalıştırmak için.
+### 3. Mobile (Expo) Application
+To run on your mobile device.
 
 ```bash
 cd client
 
-# Android için başlat (veya sadece 'bun run mobile' ile QR okut)
+# Start for Android (or just use 'bun run mobile' to scan QR code)
 bun run mobile -- --clear
 ```
-_Not: Telefonunuzun ve bilgisayarınızın aynı Wi-Fi ağında olduğundan emin olun._
+_Note: Make sure your phone and computer are on the same Wi-Fi network._
 
 ---
 
-## API Dokümantasyonu
+## API Documentation
 
-Tsukuyomi, RESTful bir API yapısı kullanır. Temel endpointler aşağıdadır:
+Tsukuyomi uses a RESTful API structure. Basic endpoints are listed below:
 
-### Müzik İşlemleri
+### Music Operations
 
-| Method | Endpoint | Açıklama |
+| Method | Endpoint | Description |
 | :--- | :--- | :--- |
-| `POST` | `/api/v1/music/scan` | Kütüphaneyi tarar ve veritabanını günceller. |
-| `GET` | `/api/v1/music/search` | Şarkı araması yapar. (`?q=query`) |
-| `GET` | `/api/v1/music/stream/{id}` | Şarkı dosyasını stream eder. |
-| `GET` | `/api/v1/music/cover/{album_id}` | Albüm kapağını getirir. |
-| `GET` | `/api/v1/music/track-cover/{id}` | Şarkıya gömülü kapağı getirir. |
-| `GET` | `/api/v1/music/lyrics` | Şarkı sözlerini çeker. |
+| `POST` | `/api/v1/music/scan` | Scans the library and updates the database. |
+| `GET` | `/api/v1/music/search` | Searches for songs. (`?q=query`) |
+| `GET` | `/api/v1/music/stream/{id}` | Streams the song file. |
+| `GET` | `/api/v1/music/cover/{album_id}` | Retrieves album cover. |
+| `GET` | `/api/v1/music/track-cover/{id}` | Retrieves embedded cover for song. |
+| `GET` | `/api/v1/music/lyrics` | Fetches song lyrics. |
 
-### Favoriler & Listeler
+### Favorites & Lists
 
-| Method | Endpoint | Açıklama |
+| Method | Endpoint | Description |
 | :--- | :--- | :--- |
-| `GET` | `/api/v1/music/favorites` | Favori şarkıları listeler. |
-| `POST` | `/api/v1/music/favorites/{id}` | Şarkıyı favorilere ekler. |
-| `DELETE` | `/api/v1/music/favorites/{id}` | Şarkıyı favorilerden çıkarır. |
-| `GET` | `/api/v1/music/playlists` | Tüm çalma listelerini getirir. |
-| `POST` | `/api/v1/music/playlists` | Yeni çalma listesi oluşturur. |
-| `GET` | `/api/v1/music/playlists/{id}` | Çalma listesi detaylarını getirir. |
-| `DELETE` | `/api/v1/music/playlists/{id}` | Çalma listesini siler. |
+| `GET` | `/api/v1/music/favorites` | Lists favorite songs. |
+| `POST` | `/api/v1/music/favorites/{id}` | Adds song to favorites. |
+| `DELETE` | `/api/v1/music/favorites/{id}` | Removes song from favorites. |
+| `GET` | `/api/v1/music/playlists` | Retrieves all playlists. |
+| `POST` | `/api/v1/music/playlists` | Creates a new playlist. |
+| `GET` | `/api/v1/music/playlists/{id}` | Retrieves playlist details. |
+| `DELETE` | `/api/v1/music/playlists/{id}` | Deletes a playlist. |
 
 ---
 
-## Proje Yapısı
+## Project Structure
 
 ```
 tsukuyomi/
 ├── client/                 # Frontend (React + Vite + Expo)
 │   ├── src/
-│   │   ├── components/     # UI Bileşenleri (Web & Mobile)
-│   │   ├── views/          # Sayfa Görünümleri
-│   │   └── MobileApp.jsx   # Mobil Giriş Noktası
+│   │   ├── components/     # UI Components (Web & Mobile)
+│   │   ├── views/          # Page Views
+│   │   └── MobileApp.jsx   # Mobile Entry Point
 │   └── package.json
 │
 ├── server/                 # Backend (FastAPI)
 │   ├── app/
-│   │   ├── api/            # API Route'ları
-│   │   ├── db/             # Veritabanı Modelleri
-│   │   └── services/       # Tarayıcı ve Müzik Servisleri
-│   └── main.py             # Sunucu Başlatıcı
+│   │   ├── api/            # API Routes
+│   │   ├── db/             # Database Models
+│   │   └── services/       # Scanner and Music Services
+│   └── main.py             # Server Launcher
 │
 └── README.md
 ```
 
-## Katkıda Bulunma
+## Contributing
 
-1.  Bu depoyu fork'layın.
-2.  Yeni bir özellik dalı (feature branch) oluşturun (`git checkout -b feature/YeniOzellik`).
-3.  Değişikliklerinizi commit'leyin (`git commit -m 'Yeni özellik eklendi'`).
-4.  Dalınızı push'layın (`git push origin feature/YeniOzellik`).
-5.  Bir Pull Request oluşturun.
+1.  Fork this repository.
+2.  Create a new feature branch (`git checkout -b feature/NewFeature`).
+3.  Commit your changes (`git commit -m 'Add new feature'`).
+4.  Push your branch (`git push origin feature/NewFeature`).
+5.  Create a Pull Request.
